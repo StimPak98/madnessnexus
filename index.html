@@ -3,16 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flash Game</title>
+    <title>Gunblood - Play Online</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            color: #ecf0f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Game Container */
+        #game-container {
+            background-color: #34495e;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Buttons */
+        .button {
+            background-color: #e74c3c;
+            color: white;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #c0392b;
+        }
+
+        .button:focus {
+            outline: none;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #bdc3c7;
+        }
+
+        /* Media Query for responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            #game-container {
+                width: 90%;
+                margin: 0 auto;
+            }
+
+            .button {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>My Flash Game</h1>
-    <object width="800" height="600">
-        <param name="movie" value="game.swf">
-        <param name="allowScriptAccess" value="always">
-        <param name="allowFullScreen" value="true">
-        <embed src="gunblood.swf" width="800" height="600" allowFullScreen="true"></embed>
-    </object>
+
+    <h1>Gunblood - Play Online</h1>
+    <div id="game-container">
+        <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+        <script>
+            window.RufflePlayer = window.RufflePlayer || {};
+            window.addEventListener("DOMContentLoaded", () => {
+                const ruffle = window.RufflePlayer.newest();
+                const player = ruffle.createPlayer();
+                player.load("gunblood.swf");  // Replace with your actual SWF file name
+                player.style.width = "800px";
+                player.style.height = "600px";
+                document.getElementById("game-container").appendChild(player);
+            });
+        </script>
+    </div>
+
+    <a href="https://github.com/yourusername/gunblood-flash" class="button" target="_blank">View on GitHub</a>
+    
+    <footer>
+        <p>Gunblood is a Flash game brought to you by the power of Ruffle. Play and enjoy!</p>
+    </footer>
+    
 </body>
 </html>
-
