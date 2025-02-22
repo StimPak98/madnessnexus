@@ -288,9 +288,24 @@
             }
         }
 
-        // Fullscreen toggle function
-        function toggleFullscreen() {
-            const gameContainer = document.getElementById('game-container');
+        
+    // Fullscreen toggle function
+    function toggleFullscreen() {
+        const gameContainer = document.getElementById('game-container');
+        const player = gameContainer.querySelector('object') || gameContainer.querySelector('embed');
+
+        if (player) {
+            if (player.requestFullscreen) {
+                player.requestFullscreen();
+            } else if (player.mozRequestFullScreen) { // Firefox
+                player.mozRequestFullScreen();
+            } else if (player.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                player.webkitRequestFullscreen();
+            } else if (player.msRequestFullscreen) { // IE/Edge
+                player.msRequestFullscreen();
+            }
+        } else {
+            // If no player found, fallback to the game container itself
             if (gameContainer.requestFullscreen) {
                 gameContainer.requestFullscreen();
             } else if (gameContainer.mozRequestFullScreen) {
@@ -301,7 +316,9 @@
                 gameContainer.msRequestFullscreen();
             }
         }
-    </script>
+    }
+</script>
+
 
 </body>
 </html>
