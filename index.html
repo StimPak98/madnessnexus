@@ -43,13 +43,17 @@
             display: none; /* Hide text initially */
         }
 
-        #sidebar button {
-            color: white;
+        /* Hamburger Button Outside Sidebar */
+        .hamburger-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 2.5rem;
+            color: #fff;
             background-color: transparent;
             border: none;
             cursor: pointer;
-            font-size: 1.8rem; /* Increase size of the hamburger icon */
-            margin-top: 15px;
+            z-index: 150; /* Ensure it's always above everything */
         }
 
         #sidebar.open {
@@ -155,9 +159,11 @@
 </head>
 <body>
 
+    <!-- Hamburger Button Outside Sidebar -->
+    <button class="hamburger-button" onclick="toggleSidebar()">☰</button>
+
     <!-- Sidebar with Navigation Links -->
     <div id="sidebar">
-        <button onclick="toggleSidebar()">☰</button> <!-- Button to open sidebar -->
         <a href="/home.html">Home</a>
         <a href="/game1.html">Game 1</a>
         <a href="/game2.html">Game 2</a>
