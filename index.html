@@ -24,7 +24,7 @@
             position: fixed;
             top: 0;
             left: -250px; /* Initially hidden off-screen */
-            transition: left 0.3s ease;
+            transition: left 0.3s ease, background-color 0.3s;
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
@@ -242,26 +242,38 @@
         }
 
         function changeTheme(theme) {
+            const sidebar = document.getElementById("sidebar");
+
             if (theme === 'light') {
                 document.body.style.backgroundColor = '#ecf0f1';
                 document.body.style.color = '#2c3e50';
                 document.getElementById("footer-text").style.color = '#2c3e50';
+                sidebar.style.backgroundColor = '#ecf0f1'; // Light theme sidebar
+                sidebar.style.color = '#2c3e50';
             } else if (theme === 'dark') {
                 document.body.style.backgroundColor = '#2c3e50';
                 document.body.style.color = '#ecf0f1';
                 document.getElementById("footer-text").style.color = '#ecf0f1';
+                sidebar.style.backgroundColor = '#2c3e50'; // Dark theme sidebar
+                sidebar.style.color = '#ecf0f1';
             } else if (theme === 'blue') {
                 document.body.style.backgroundColor = '#2980b9'; /* Darker blue */
                 document.body.style.color = '#ecf0f1';
                 document.getElementById("footer-text").style.color = '#ecf0f1';
+                sidebar.style.backgroundColor = '#2980b9'; /* Darker blue sidebar */
+                sidebar.style.color = '#ecf0f1';
             } else if (theme === 'red') {
                 document.body.style.backgroundColor = '#c0392b'; /* Darker red */
                 document.body.style.color = '#ecf0f1';
                 document.getElementById("footer-text").style.color = '#ecf0f1';
+                sidebar.style.backgroundColor = '#c0392b'; /* Darker red sidebar */
+                sidebar.style.color = '#ecf0f1';
             } else if (theme === 'purple') {
                 document.body.style.backgroundColor = '#8e44ad'; /* Darker purple */
                 document.body.style.color = '#ecf0f1';
                 document.getElementById("footer-text").style.color = '#ecf0f1';
+                sidebar.style.backgroundColor = '#8e44ad'; /* Darker purple sidebar */
+                sidebar.style.color = '#ecf0f1';
             }
         }
 
