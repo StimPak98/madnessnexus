@@ -13,34 +13,42 @@
             display: flex;
             min-height: 100vh;
             transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden; /* Prevent horizontal scroll when sidebar is open */
+            overflow-x: hidden;
         }
 
         /* Sidebar */
         #sidebar {
-            width: 60px; /* Narrow width for a less intrusive sidebar */
+            width: 250px; /* Increased width for the sidebar */
             height: 100%;
-            background-color: rgba(52, 152, 219, 0.9); /* Semi-transparent blue */
+            background-color: rgba(52, 152, 219, 0.9);
             position: fixed;
             top: 0;
-            left: -60px; /* Initially hidden off-screen */
+            left: -250px; /* Initially hidden off-screen */
             transition: left 0.3s ease;
-            padding: 20px 10px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+            align-items: flex-start;
+            justify-content: flex-start;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
             z-index: 100;
         }
 
         #sidebar a {
             color: white;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
             transition: 0.3s;
-            display: none; /* Hide text initially */
+            display: none;
+        }
+
+        #sidebar.open {
+            left: 0;
+        }
+
+        #sidebar.open a {
+            display: block;
         }
 
         /* Hamburger Button Outside Sidebar */
@@ -49,19 +57,16 @@
             top: 20px;
             left: 20px;
             font-size: 2.5rem;
-            color: #fff;
+            color: black;
             background-color: transparent;
             border: none;
             cursor: pointer;
-            z-index: 150; /* Ensure it's always above everything */
+            z-index: 150;
+            transition: color 0.3s;
         }
 
-        #sidebar.open {
-            left: 0; /* Slide the sidebar in */
-        }
-
-        #sidebar.open a {
-            display: block; /* Show text when sidebar is open */
+        #sidebar.open ~ .hamburger-button {
+            color: white;
         }
 
         /* Main content */
@@ -86,6 +91,7 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
             font-size: 2.5rem;
+            transition: color 0.3s;
         }
 
         .button {
@@ -96,12 +102,13 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
             margin-top: 20px;
         }
 
         .button:hover {
             background-color: #c0392b;
+            transform: scale(1.1);
         }
 
         .button:focus {
@@ -117,6 +124,7 @@
             margin-top: 20px;
             font-size: 1rem;
             color: #bdc3c7;
+            transition: color 0.3s;
         }
 
         .fullscreen-button {
@@ -129,21 +137,45 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .fullscreen-button:hover {
+            background-color: #1c6fa6;
         }
 
         .fullscreen-button:focus {
             outline: none;
         }
 
+        /* Darker Glossy Themes */
+        .theme-blue {
+            background-color: #2980b9; /* Darker blue */
+            color: white;
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .theme-red {
+            background-color: #c0392b; /* Darker red */
+            color: white;
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .theme-purple {
+            background-color: #8e44ad; /* Darker purple */
+            color: white;
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
         /* Media Queries for responsiveness */
         @media (max-width: 768px) {
             #sidebar {
-                width: 50px;
+                width: 200px;
                 padding: 15px;
             }
 
             #content {
-                margin-left: 50px;
+                margin-left: 200px;
             }
 
             h1 {
@@ -219,15 +251,15 @@
                 document.body.style.color = '#ecf0f1';
                 document.getElementById("footer-text").style.color = '#ecf0f1';
             } else if (theme === 'blue') {
-                document.body.style.backgroundColor = '#3498db';
+                document.body.style.backgroundColor = '#2980b9'; /* Darker blue */
                 document.body.style.color = '#ecf0f1';
                 document.getElementById("footer-text").style.color = '#ecf0f1';
             } else if (theme === 'red') {
-                document.body.style.backgroundColor = '#e74c3c';
+                document.body.style.backgroundColor = '#c0392b'; /* Darker red */
                 document.body.style.color = '#ecf0f1';
                 document.getElementById("footer-text").style.color = '#ecf0f1';
             } else if (theme === 'purple') {
-                document.body.style.backgroundColor = '#9b59b6';
+                document.body.style.backgroundColor = '#8e44ad'; /* Darker purple */
                 document.body.style.color = '#ecf0f1';
                 document.getElementById("footer-text").style.color = '#ecf0f1';
             }
