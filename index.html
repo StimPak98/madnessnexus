@@ -12,8 +12,9 @@
             padding: 0;
             display: flex;
             min-height: 100vh;
-            transition: background-color 0.3s, color 0.3s;
             overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* Sidebar */
@@ -84,6 +85,9 @@
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
             position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         h1 {
@@ -221,8 +225,8 @@
                     const ruffle = window.RufflePlayer.newest();
                     const player = ruffle.createPlayer();
                     player.load("Gunblood.swf");
-                    player.style.width = "800px";
-                    player.style.height = "600px";
+                    player.style.width = "600px"; /* Set the width of the game */
+                    player.style.height = "600px"; /* Set the height of the game */
                     document.getElementById("game-container").appendChild(player);
                 });
             </script>
