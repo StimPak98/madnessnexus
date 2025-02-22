@@ -3,28 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gunblood - Play Online</title>
+    <title>Game Hub - Play Online</title>
     <style>
         /* Global Styles */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #2c3e50;
             margin: 0;
             padding: 0;
-            color: #ecf0f1;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        h1 {
-            font-size: 3rem;
+        /* Sidebar */
+        #sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #34495e;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+        }
+
+        #sidebar a {
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        #sidebar a:hover {
             color: #e74c3c;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main content */
+        #content {
+            margin-left: 260px;
+            padding: 20px;
+            width: calc(100% - 260px);
+            flex: 1;
+            transition: 0.3s;
         }
 
         /* Game Container */
@@ -33,20 +58,26 @@
             padding: 10px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            position: relative;
         }
 
-        /* Buttons */
+        h1 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            font-size: 2.5rem;
+        }
+
         .button {
             background-color: #e74c3c;
             color: white;
             font-size: 1.2rem;
-            padding: 15px 30px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
             margin-top: 20px;
-            text-align: center;
         }
 
         .button:hover {
@@ -57,54 +88,133 @@
             outline: none;
         }
 
-        /* Footer */
+        .theme-button {
+            background-color: #3498db;
+            margin-top: 15px;
+        }
+
         footer {
             margin-top: 20px;
             font-size: 1rem;
             color: #bdc3c7;
         }
 
-        /* Media Query for responsiveness */
+        .fullscreen-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #2980b9;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .fullscreen-button:focus {
+            outline: none;
+        }
+
+        /* Media Queries for responsiveness */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            #sidebar {
+                width: 200px;
+                padding: 15px;
             }
 
-            #game-container {
-                width: 90%;
-                margin: 0 auto;
+            #content {
+                margin-left: 210px;
+                width: calc(100% - 210px);
+            }
+
+            h1 {
+                font-size: 2rem;
             }
 
             .button {
                 font-size: 1rem;
-                padding: 12px 25px;
+                padding: 8px 16px;
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>Gunblood - Play Online</h1>
-    <div id="game-container">
-        <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-        <script>
-            window.RufflePlayer = window.RufflePlayer || {};
-            window.addEventListener("DOMContentLoaded", () => {
-                const ruffle = window.RufflePlayer.newest();
-                const player = ruffle.createPlayer();
-                player.load("gunblood.swf");  // Replace with your actual SWF file name
-                player.style.width = "800px";
-                player.style.height = "600px";
-                document.getElementById("game-container").appendChild(player);
-            });
-        </script>
+    <!-- Sidebar with Navigation Links -->
+    <div id="sidebar">
+        <a href="/home.html">Home</a>
+        <a href="/game1.html">Game 1</a>
+        <a href="/game2.html">Game 2</a>
+        <a href="/game3.html">Game 3</a>
+        <a href="/game4.html">Game 4</a>
+
+        <!-- Theme Switcher -->
+        <button class="button theme-button" onclick="changeTheme('light')">Light Theme</button>
+        <button class="button theme-button" onclick="changeTheme('dark')">Dark Theme</button>
+        <button class="button theme-button" onclick="changeTheme('blue')">Blue Theme</button>
+        <button class="button theme-button" onclick="changeTheme('red')">Red Theme</button>
+        <button class="button theme-button" onclick="changeTheme('purple')">Purple Theme</button>
     </div>
 
-    <a href="https://github.com/yourusername/gunblood-flash" class="button" target="_blank">View on GitHub</a>
-    
-    <footer>
-        <p>Gunblood is a Flash game brought to you by the power of Ruffle. Play and enjoy!</p>
-    </footer>
-    
+    <!-- Main Content -->
+    <div id="content">
+        <h1>Gunblood - Play Online</h1>
+        <div id="game-container">
+            <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+            <script>
+                window.RufflePlayer = window.RufflePlayer || {};
+                window.addEventListener("DOMContentLoaded", () => {
+                    const ruffle = window.RufflePlayer.newest();
+                    const player = ruffle.createPlayer();
+                    player.load("Gunblood.swf");
+                    player.style.width = "800px";
+                    player.style.height = "600px";
+                    document.getElementById("game-container").appendChild(player);
+                });
+            </script>
+            <button class="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+        </div>
+
+        <footer>
+            <p>Gunblood is a Flash game brought to you by the power of Ruffle. Created by <strong>nuts12</strong>. This is an uncensored, open-source website where people can play games freely without restrictions.</p>
+        </footer>
+    </div>
+
+    <script>
+        function changeTheme(theme) {
+            if (theme === 'light') {
+                document.body.style.backgroundColor = '#ecf0f1';
+                document.body.style.color = '#2c3e50';
+            } else if (theme === 'dark') {
+                document.body.style.backgroundColor = '#2c3e50';
+                document.body.style.color = '#ecf0f1';
+            } else if (theme === 'blue') {
+                document.body.style.backgroundColor = '#3498db';
+                document.body.style.color = '#ecf0f1';
+            } else if (theme === 'red') {
+                document.body.style.backgroundColor = '#e74c3c';
+                document.body.style.color = '#ecf0f1';
+            } else if (theme === 'purple') {
+                document.body.style.backgroundColor = '#9b59b6';
+                document.body.style.color = '#ecf0f1';
+            }
+        }
+
+        // Fullscreen toggle function
+        function toggleFullscreen() {
+            const gameContainer = document.getElementById('game-container');
+            if (gameContainer.requestFullscreen) {
+                gameContainer.requestFullscreen();
+            } else if (gameContainer.mozRequestFullScreen) {
+                gameContainer.mozRequestFullScreen();
+            } else if (gameContainer.webkitRequestFullscreen) {
+                gameContainer.webkitRequestFullscreen();
+            } else if (gameContainer.msRequestFullscreen) {
+                gameContainer.msRequestFullscreen();
+            }
+        }
+    </script>
+
 </body>
 </html>
+
